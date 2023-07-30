@@ -36,7 +36,7 @@ pipeline{
         }
         stage('UNIT TEST'){
             steps{
-                sh 'mvn -s settings.xml test'
+                sh 'mvn test'
             }
             post {
                 success {
@@ -53,12 +53,12 @@ pipeline{
         }
         stage('INTEGRATION TEST'){
             steps{
-                sh 'mvn -s settings.xml verify -DskipUnitTests'
+                sh 'mvn verify -DskipUnitTests'
             }
         }
         stage('CHECKSTYLE ANALYSIS'){
             steps{
-                sh 'mvn -s settings.xml checkstyle:checkstyle'
+                sh 'mvn checkstyle:checkstyle'
             }
         }
         stage('UPLOAD ARTIFACT TO NEXUS'){
